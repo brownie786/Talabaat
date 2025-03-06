@@ -4,16 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.talabaat_foodorderingapp.dataClass.CategoryList
-import com.example.talabaat_foodorderingapp.dataClass.CategoryMeals
+import com.example.talabaat_foodorderingapp.dataClass.MealsByCategory
 import com.example.talabaat_foodorderingapp.databinding.PopularItemsBinding
 
 class PopularAdapter(): RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() {
 
-    lateinit var onItemClick: ((CategoryMeals) -> Unit)
-    private var mealsList = ArrayList<CategoryMeals>()
+    lateinit var onItemClick: ((MealsByCategory) -> Unit)
+    private var mealsList = ArrayList<MealsByCategory>()
 
-    fun setMealsList(mealsList: ArrayList<CategoryMeals>){
+    fun setMealsList(mealsList: ArrayList<MealsByCategory>){
         this.mealsList = mealsList
         notifyDataSetChanged()
     }
