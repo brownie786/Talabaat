@@ -10,6 +10,7 @@ import com.example.talabaat_foodorderingapp.databinding.CategoryItemsBinding
 class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     private var categoryList = ArrayList<Category>()
+    lateinit var onItemClick: ((Category) -> Unit)
 
     fun setCategoryList(categoryList: List<Category>?) {
         this.categoryList = categoryList as ArrayList<Category>
@@ -26,6 +27,10 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(
             .load(categoryList[position].strCategoryThumb)
             .into(holder.binding.ivCategory)
         holder.binding.tvCategory.text = categoryList[position].strCategory
+
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(categoryList[position])
+        }
     }
 
     override fun getItemCount(): Int = categoryList.size

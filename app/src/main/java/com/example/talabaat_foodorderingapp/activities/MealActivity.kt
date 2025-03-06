@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.talabaat_foodorderingapp.R
 import com.example.talabaat_foodorderingapp.dataClass.Meal
@@ -25,12 +24,15 @@ class MealActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         binding = ActivityMealBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        mealMvvm = ViewModelProvider(this)[MealViewModel::class.java]
+
         getMealInformation()
         setInformationInViews()
+
         loadingCase()
+
         mealMvvm.getMealDetails(mealId)
         observerMealDetailsLiveData()
         onYoutubeImgClick()
@@ -43,6 +45,13 @@ class MealActivity : AppCompatActivity() {
         }
     }
 
+    private fun getMealInformation() {
+        val intent = intent
+        mealId = intent.getStringExtra(HomeFragment.MEAL_ID).toString()
+        mealName = intent.getStringExtra(HomeFragment.MEAL_NAME).toString()
+        mealThumb = intent.getStringExtra(HomeFragment.Meal_THUMB).toString()
+    }
+
     private fun setInformationInViews() {
         Glide.with(applicationContext)
             .load(mealThumb)
@@ -51,13 +60,6 @@ class MealActivity : AppCompatActivity() {
         binding.collapsingToolbar.title = mealName
         binding.collapsingToolbar.setExpandedTitleColor(resources.getColor(R.color.white))
         binding.collapsingToolbar.setExpandedTitleColor(resources.getColor(R.color.white))
-    }
-
-    private fun getMealInformation() {
-        val intent = intent
-        mealId = intent.getStringExtra(HomeFragment.MEAL_ID).toString()
-        mealName = intent.getStringExtra(HomeFragment.MEAL_NAME).toString()
-        mealThumb = intent.getStringExtra(HomeFragment.Meal_THUMB).toString()
     }
 
     private fun observerMealDetailsLiveData() {

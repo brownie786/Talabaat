@@ -1,15 +1,9 @@
 package com.example.talabaat_foodorderingapp.viewModel
 
-import android.os.Bundle
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.talabaat_foodorderingapp.R
 import com.example.talabaat_foodorderingapp.dataClass.Meal
 import com.example.talabaat_foodorderingapp.dataClass.MealsList
 import com.example.talabaat_foodorderingapp.retrofit.RetrofitInstance
@@ -30,7 +24,6 @@ class MealViewModel(): ViewModel(){
                     return
                 }
             }
-
             override fun onFailure(call: Call<MealsList?>, t: Throwable) {
                 Log.d("MealVM", t.message.toString())
             }
