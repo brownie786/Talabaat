@@ -41,11 +41,14 @@ class HomeViewModel(): ViewModel() {
                 }else
                     return
             }
-
             override fun onFailure(call: Call<CategoryList?>, t: Throwable) {
                 Log.d("HomeVM", t.message.toString())
             }
         })
+    }
+
+    fun observePopularItemsLiveData(): LiveData<List<CategoryMeals>> {
+        return popularItemsLiveData
     }
 
     fun observeRandomMealLiveData(): LiveData<Meal> {
