@@ -1,6 +1,7 @@
 package com.example.talabaat_foodorderingapp.viewModel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.talabaat_foodorderingapp.dataClass.MealsByCategory
@@ -34,7 +35,7 @@ class CategoryMealsViewModel: ViewModel() {
         })
     }
 
-    fun observeMealsListByCategoryLiveData(): MutableLiveData<List<MealsByCategory>>{
+    fun observeMealsListByCategoryLiveData():   LiveData<List<MealsByCategory>> {
         return mealsListByCategoryLiveData
     }
 }

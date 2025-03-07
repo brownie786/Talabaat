@@ -32,11 +32,14 @@ class CategoryMealsActivity : AppCompatActivity() {
         prepareRecyclerView()
 
         categoryMealsViewModel = ViewModelProvider(this)[CategoryMealsViewModel::class.java]
-        categoryName = intent.getStringExtra(HomeFragment.CATEGORY_NAME)!!.toString()
-
+        getCategoryName()
         categoryMealsViewModel.getMealsByCategory(categoryName)
 
         observerMealsListLiveData()
+    }
+
+    private fun getCategoryName() {
+        categoryName = intent.getStringExtra(HomeFragment.CATEGORY_NAME)!!.toString()
     }
 
     private fun prepareRecyclerView() {
@@ -48,7 +51,7 @@ class CategoryMealsActivity : AppCompatActivity() {
     private fun observerMealsListLiveData() {
         categoryMealsViewModel.observeMealsListByCategoryLiveData().observe(this, Observer {
             mealList ->
-            binding.tvCategoryCount.text = mealList.size.toString()
+            binding.tvCategoryCount.text = "Total Items: " + mealList.size.toString()
             categoryMealsAdapter.setMealsList(mealList)
 //            mealList.forEach {
 //                Log.d("TEST", it.strMeal)

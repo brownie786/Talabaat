@@ -25,6 +25,7 @@ class CategoryMealsAdapter : RecyclerView.Adapter<CategoryMealsAdapter.CategoryM
         Glide.with(holder.itemView)
             .load(mealsList[position].strMealThumb)
             .into(holder.binding.imgMeal)
+        holder.binding.tvMealName.text = mealsList[position].strMeal
     }
 
     override fun getItemCount(): Int = mealsList.size
